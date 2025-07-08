@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { styled } from "styled-components"
+// import { styled } from "styled-components"
 import Button from "./Button.jsx"
 import Input from "./Input.jsx"
 
-const ControlContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem; 
-` 
+// const ControlContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
+//   margin-bottom: 1.5rem; 
+// ` 
 
 
 
-export default function AuthInputs() {
+export default function AuthInputs({...props}) {
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredPassword, setEnteredPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -33,10 +33,10 @@ export default function AuthInputs() {
   const passwordNotValid = submitted && enteredPassword.trim().length < 6;
 
   return (
-    <div id="auth-inputs">
-      <ControlContainer>
+    <div id="auth-inputs" className='w-full max-w-sm p-8 mx-auto rounded shadow-md bg-gradient-to-b from-stone-700 to-stone-800'>
+      <div className=' flex flex-col gap-2 mb-6'>
         {/* className={`label ${emailNotValid ? "invalid" : ""}`} */}
-      <Input
+      <Input {...props}
             label="Email"
             type="email"
             invalid={emailNotValid}
@@ -49,7 +49,7 @@ export default function AuthInputs() {
         
         {/* className={`label ${passwordNotValid ? "invalid" : ""}`} */}
         
-          <Input
+          <Input {...props}
             label="Password"
             type="password"
             invalid={passwordNotValid}
@@ -58,9 +58,9 @@ export default function AuthInputs() {
             }
           />
        
-      </ControlContainer>
-      <div className="actions">
-        <button type="button" className="text-button">
+      </div>
+      <div className="flex justify-end gap-4">
+        <button type="button" className="text-amber-400 hover:text-amber-500">
           Create a new account
         </button>
         <Button onClick={handleLogin}>Sign In</Button>
